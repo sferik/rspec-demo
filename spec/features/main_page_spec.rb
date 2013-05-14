@@ -11,9 +11,14 @@ describe "main page" do
     course1 = Course.create(:name => "WDI SF")
     course2 = Course.create(:name => "WDI NY")
     visit '/'
-    expect(page).to have_selector('select#courses')
-    expect(page).to have_selector('select#courses option', :text => "WDI SF")
-    expect(page).to have_selector('select#courses option', :text => "WDI NY")
+    expect(page).to have_selector('form#bingo select#courses')
+    expect(page).to have_selector('form#bingo select#courses option', :text => "WDI SF")
+    expect(page).to have_selector('form#bingo select#courses option', :text => "WDI NY")
+  end
+
+  it "has a submit button" do
+    visit '/'
+    expect(page).to have_selector('form#bingo button')
   end
 
 end
