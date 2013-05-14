@@ -10,6 +10,7 @@ gem 'sqlite3'
 group :test do
   gem 'simplecov'
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Gems used only for assets and not required
