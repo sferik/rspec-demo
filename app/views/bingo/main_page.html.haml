@@ -1,0 +1,8 @@
+%h1 Welcome to Bingo!
+
+%form{:method => 'get', :action => '/you_win'}
+  %select{:name => "course[id]"}
+    - @courses.each do |course|
+      %option{:value => course.id}
+        = course.name
+  %button Choose random student
