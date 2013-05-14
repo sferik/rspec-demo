@@ -26,4 +26,40 @@ describe BingoController do
 
   end
 
+  describe "choose_student" do
+
+    context "with a valid course id passed" do
+
+      it "responds sucessfully with an HTTP 200 status code" do
+        course = Course.create
+        get :choose_student, :course => {:id => course.id}
+        expect(response).to be_success
+        expect(response.status).to eq 200
+      end
+
+      it "renders the choose_winner template" do
+        course = Course.create
+        get :choose_student, :course => {:id => course.id}
+        expect(response).to render_template("choose_winner")
+      end
+
+      it "chooses a student in the course as a @winner" do
+        course = Course.create
+        student = Student.create(:course_id => course.id)
+        get :choose_student, :course => {:id => course.id}
+        expect(assigns(:winner)).to eq student
+      end
+
+    end
+
+    context "without a valid course id passed" do
+      it "responds sucessfully with an HTTP 200 status code" do
+        get :choose_student
+        expect(response).to be_not_found
+        expect(response.status).to eq 404
+      end
+    end
+
+  end
+
 end

@@ -6,9 +6,13 @@ class BingoController < ApplicationController
   end
 
   def choose_student
-    course = Course.find(params[:course][:id])
-    @winner = course.students.sample
-    render 'choose_winner'
+    if params[:course]
+      course = Course.find(params[:course][:id])
+      @winner = course.students.sample
+      render 'choose_winner'
+    else
+      head :status => 404
+    end
   end
 
 end
