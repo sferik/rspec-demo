@@ -1,7 +1,7 @@
 %h1 Welcome to Bingo!
 
 %form{:method => 'get', :action => '/you_win'}
-  %select{:name => "course[id]"}
+  %select{:name => "course[id]", :id => "courses"}
     - @courses.each do |course|
       %option{:value => course.id}
         = course.name
